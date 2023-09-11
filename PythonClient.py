@@ -37,7 +37,7 @@ while True:
         z_coordinate = w  # Assuming z-coordinate is proportional to the width of the face box
 
         # Display the coordinates and z-coordinate near the center of the face rectangle
-        data = f"{center_x/100}, {center_y/100}, {z_coordinate/100}"
+        data = f"{center_x/100 - center_x/100/2}, {center_y/100 - center_y/100/2}, {z_coordinate/100 - z_coordinate/100/2}"
 
     # data = f"{base_coordinate[0]+i},{base_coordinate[1]},{base_coordinate[2]}"
     print(data)
