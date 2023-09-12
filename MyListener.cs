@@ -94,7 +94,14 @@ public class MyListener : MonoBehaviour
 
     void Update()
     {
-        transform.position = position;
+        // Get the current position
+        Vector3 currentPosition = transform.position;
+
+        // Adjust the current position by the parsed values
+        currentPosition += position;
+
+        // Set the new position
+        transform.position = currentPosition;
     }
 
     // Cleanup and close the server when the application is closed or this object is destroyed.
