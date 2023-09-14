@@ -1,6 +1,7 @@
 import cv2
 import socket
 import time
+import csv  # Import the csv module
 
 # Load the pre-trained face detection model
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
@@ -43,9 +44,8 @@ while True:
 
     # Add a delay to avoid excessive CPU usage
     time.sleep(0.1)
-    
 
-while True:
+for i in range(100):
     start_time = time.time()
 
     # Read a frame from the webcam
@@ -63,7 +63,6 @@ while True:
     faces = face_cascade.detectMultiScale(gray_frame, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
     for (x, y, w, h) in faces:
-
         center_x = x + w // 2
         center_y = y + h // 2
         z_coordinate = w  # Assuming z-coordinate is proportional to the width of the face box
@@ -71,7 +70,7 @@ while True:
         # Display the coordinates and z-coordinate near the center of the face rectangle
         shift = [center_x/100-data[0], (center_y/100-data[1])*-1, (z_coordinate/100-data[2])*-1]
         data = [center_x/100, center_y/100, z_coordinate/100]
-    
+
     shiftString = f"{shift[0]},{shift[1]},{shift[2]}"
     print(shiftString)
 
@@ -90,11 +89,18 @@ while True:
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-        
+
     end_time = time.time()
     time_taken = end_time - start_time
     print(f"Time taken: {time_taken:.6f} seconds")
-    
+
+    # Write the benchmark times to the CSV file
+    with open('benchmark_times.csv', 'a', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile)
+        if i == 0:  # Write the header only once
+            csvwriter.writerow(['Iteration', 'Time Taken (seconds)'])
+        csvwriter.writerow([i, f"{time_taken:.6f}"])
+
     # Optional: wait for a short duration before the next connection
     time.sleep(0.1)
 
