@@ -17,8 +17,5 @@ Currently, Capstone can detect a user's face and adjust the projection assets ac
 ## Contributions and Feedback
 We welcome any feedback or suggestions to improve the project's performance and functionalities. If you'd like to contribute or have any queries, please feel free to open an issue or submit a pull request.
 
-## License
-[Specify your license here, e.g., MIT, GPL, etc.]
-
 ## Contact
-[Your contact details, e.g., email, Twitter, etc.]
+Email: karekara24@asmsa.org
