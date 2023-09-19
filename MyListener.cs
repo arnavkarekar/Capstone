@@ -60,34 +60,23 @@ public class MyListener : MonoBehaviour
     void Connection(TcpClient client)
     {
         NetworkStream nwStream = client.GetStream();
-        byte[] buffer = new byte[client.ReceiveBufferSize];
-        int bytesRead = nwStream.Read(buffer, 0, client.ReceiveBufferSize);
+        byte[] buffer = new byte[12]; // 3 floats * 4 bytes each
+        int bytesRead = nwStream.Read(buffer, 0, buffer.Length);
 
-        string dataReceived = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-        
-        if (!string.IsNullOrEmpty(dataReceived))
+        if (bytesRead == 12)
         {
-            position = ParseData(dataReceived);
+            position = ParseData(buffer);
             nwStream.Write(buffer, 0, bytesRead);
         }
     }
 
-    public static Vector3 ParseData(string dataString)
+    public Vector3 ParseData(byte[] data)
     {
-        Debug.Log(dataString);
-        if (dataString.StartsWith("(") && dataString.EndsWith(")"))
-        {
-            dataString = dataString.Substring(1, dataString.Length - 2);
-        }
+        float x = System.BitConverter.ToSingle(data, 0);
+        float y = System.BitConverter.ToSingle(data, 4);
+        float z = System.BitConverter.ToSingle(data, 8);
 
-        string[] stringArray = dataString.Split(',');
-
-        Vector3 result = new Vector3(
-            float.Parse(stringArray[0]),
-            float.Parse(stringArray[1]),
-            float.Parse(stringArray[2]));
-
-        return result;
+        return new Vector3(x, y, z);
     }
 
     Vector3 position = Vector3.zero;
