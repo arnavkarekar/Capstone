@@ -6,7 +6,6 @@ import struct
 
 # Load the pre-trained face detection model
 face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-
 # Open the webcam
 cap = cv2.VideoCapture(0)
 
