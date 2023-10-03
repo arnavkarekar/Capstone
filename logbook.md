@@ -4,7 +4,7 @@
 
 ## Entry 1: Switching Gears from Unity to Web Development
 
-**Date**: [Insert Date]
+**Date**: [09/27/2023]
 
 Today, I decided to pivot from creating a Unity-based server to developing an interactive website. The server interaction between Unity and Python was too slow, even when transferring data as binary files. So, I've opted for a more responsive web-based approach.
 
