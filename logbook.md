@@ -12,3 +12,21 @@ The first thing I did was create a simple website that can interact with mouse m
 
 ![Paralax Site 1](static/image1.png)
 ![Paralax Site 2](static/image2.png)
+
+---
+
+## Entry 2: Implementing Camera and Head Tracking
+
+**Date**: [10/01/2023]
+
+I took the next step by creating a website that can access the camera, locate my head, and return its position. Initially, I had the site return the head location as a string. However, I later decided to switch to a JSON file. This change should make data retrieval faster since parsing a JSON object is quicker than parsing a string.
+
+---
+
+## Entry 3: Parallax Site with Head Tracking
+
+**Date**: [10/02/2023]
+
+Today, I integrated the head tracking feature into a parallax website. The site's elements now move based on the location of my head. I encountered an issue where the coordinates from the camera didn't align with the screen coordinates. To fix this, I resized the frame that looks for a face before actually searching for it.
+
+---
